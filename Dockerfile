@@ -26,6 +26,7 @@ RUN set -ex; \
 WORKDIR /var/www/html
 
 COPY . .
+RUN ls -l
 
 # Setup the PORT environment variable in Apache configuration files: https://cloud.google.com/run/docs/reference/container-contract#port
 ENV PORT=8080
