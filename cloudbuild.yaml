@@ -76,10 +76,10 @@ steps:
     id: Deploy to PROD version
     entrypoint: gcloud
 
-
+#europe-west1-docker.pkg.dev/caramel-source-456508-u1/joao-repo/my-php-app-docker
 images:
   - >-
-    $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    $_AR_HOSTNAME/$PROJECT_ID/joao-repo/my-php-app-docker:$COMMIT_SHA
 options:
   substitutionOption: ALLOW_LOOSE
   logging: CLOUD_LOGGING_ONLY
