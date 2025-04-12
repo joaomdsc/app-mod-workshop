@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image'])) {
-    $filename = 'uploads/' . basename($_FILES['image']['name']);
+    $filename = '/uploads/' . basename($_FILES['image']['name']);
     if (move_uploaded_file($_FILES['image']['tmp_name'], $filename)) {
         $stmt = $pdo->prepare("INSERT INTO images (user_id, filename) VALUES (?, ?)");
         $stmt->execute([$_SESSION['user_id'], $filename]);
