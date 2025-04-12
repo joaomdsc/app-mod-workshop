@@ -26,7 +26,6 @@ RUN set -ex; \
 WORKDIR /var/www/html
 
 COPY . .
-RUN ls -l
 
 # Setup the PORT environment variable in Apache configuration files: https://cloud.google.com/run/docs/reference/container-contract#port
 ENV PORT=8080
@@ -37,6 +36,7 @@ RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/a
 # Note: This is quite insecure and opens security breaches. See last chapter for hardening ideas.
 # Uncomment at your own risk:
 RUN chmod 777 /var/www/html/uploads
+RUN ls -l
 
 # Configure PHP for development.
 # Switch to the production php.ini for production operations.
