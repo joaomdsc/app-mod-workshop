@@ -7,7 +7,7 @@ steps:
       - '--no-cache'
       - '-t'
       - >-
-        $_AR_HOSTNAME/$PROJECT_ID/joao-repo/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        $_AR_HOSTNAME/$PROJECT_ID/joao-repo/$_SERVICE_NAME:$COMMIT_SHA
       - .
       - '-f'
       - Dockerfile
@@ -16,7 +16,7 @@ steps:
     args:
       - push
       - >-
-        $_AR_HOSTNAME/$PROJECT_ID/joao-repo/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        $_AR_HOSTNAME/$PROJECT_ID/joao-repo/$_SERVICE_NAME:$COMMIT_SHA
     id: Push to Artifact Repository
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
     # All configs for `gcloud run deploy` are here: https://cloud.google.com/sdk/gcloud/reference/run/deploy
@@ -30,7 +30,7 @@ steps:
       - '--platform=managed'
       - '--port=80'
       - >-
-        --image=$_AR_HOSTNAME/$PROJECT_ID/joao-repo/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        --image=$_AR_HOSTNAME/$PROJECT_ID/joao-repo/$_SERVICE_NAME:$COMMIT_SHA
 #      - >-
 #        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,php-amarcord-github-user=$_GITHUB_USER,devfest-city=$_DEVFEST_CITY
       - '--region=$_DEPLOY_REGION'
@@ -59,7 +59,7 @@ steps:
       - '--platform=managed'
       - '--port=80'
       - >-
-        --image=$_AR_HOSTNAME/$PROJECT_ID/joao-repo/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        --image=$_AR_HOSTNAME/$PROJECT_ID/joao-repo/$_SERVICE_NAME:$COMMIT_SHA
 #      - >-
 #        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,php-amarcord-github-user=$_GITHUB_USER,devfest-city=$_DEVFEST_CITY
       - '--region=$_DEPLOY_REGION'
@@ -87,7 +87,7 @@ substitutions:
   _DEPLOY_REGION: europe-west1
   _AR_HOSTNAME: europe-west1-docker.pkg.dev
   _PLATFORM: managed
-  _SERVICE_NAME: php-amarcord
+  _SERVICE_NAME: my-php-app-docker
   _EXECUTION_ENVIRONMENT: 'rgc/cloudbuild'
   #_GITHUB_USER: Friends-of-Ricc # change your your own, eg 'gregorio'
   _GITHUB_USER: joaomdsc # change your your own, eg 'gregorio'
